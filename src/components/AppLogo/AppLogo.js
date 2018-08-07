@@ -3,8 +3,8 @@ import './AppLogo.css';
 
 class AppLogo extends Component {
   render() {
-    return (<div className="animated infinite tada delay-5s">
-      <img width="150" height="auto" src={require("./brain.png")}/>
+    return (<div>
+      <img alt="" width="100" height="auto" src={require("./brain.png")}/>
     </div>);
   }
 }
