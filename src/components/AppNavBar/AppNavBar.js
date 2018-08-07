@@ -1,15 +1,10 @@
 import React, {Component} from 'react';
-import {Navbar, Nav, NavItem, MenuItem, NavDropdown} from 'react-bootstrap';
+import AppLogo from '../AppLogo/AppLogo.js';
+import Login from '../Login/login.js';
+import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import './AppNavBar.css';
 
-class AppNavBar extends Component {
-
-  constructor() {
-    super();
-    this.state = {}
-  }
-
-  render() {
+const AppNavBar = (onRouteChange) => {
     return (<div>
       <Navbar inverse="inverse" collapseOnSelect="collapseOnSelect">
         <Navbar.Header>
@@ -17,25 +12,27 @@ class AppNavBar extends Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
+            <AppLogo/>
+          </Nav>
+          <Nav>
             <NavItem>
               Face Detection
             </NavItem>
-            <NavItem eventKey={2} href="#">
+            <NavItem eventKey={2} href="#" onClick={() => onRouteChange('demoGraph')}>
               Demographics
             </NavItem>
           </Nav>
-          <Nav pullRight="pullRight">
+          <Nav pullRight="true">
             <NavItem eventKey={1} href="#">
               User
             </NavItem>
-            <NavItem eventKey={2} href="#">
+            <NavItem eventKey={2} href="#" >
               Log Out
             </NavItem>
           </Nav>
         </Navbar.Collapse>
-      </Navbar>;
+      </Navbar>
     </div>);
-  }
 }
 
 export default AppNavBar;
