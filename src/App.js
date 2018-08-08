@@ -4,6 +4,7 @@ import AppNavBar from './components/AppNavBar/AppNavBar.js';
 import ImageLinkForm from './components/ImageLinkForm/imageLinkForm.js';
 import FaceReco from './components/FaceRecognition/FaceRecognition.js';
 import DemoGraph from './components/DemoGraphics/demoGraphics.js';
+import SignIn from './components/SignIn/SignIn.js';
 import {Grid, Row, Col} from 'react-bootstrap';
 import './App.css';
 
@@ -154,7 +155,8 @@ class App extends React.Component {
       <div>
         {/* <Particles className='particles' params={particlesParams}/> */}
         <div className="App">
-          <AppNavBar isSignedIn = {isSignedIn} onRouteChange = {this.onRouteChange}/>
+          <SignIn />
+          {/* <AppNavBar isSignedIn = {isSignedIn} onRouteChange = {this.onRouteChange}/>
           <Grid>
 
               {
@@ -173,7 +175,7 @@ class App extends React.Component {
                       )
               }
 
-          </Grid>
+          </Grid> */}
         </div>
       </div>
     );
