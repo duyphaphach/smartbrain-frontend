@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Particles from 'react-particles-js';
 import AppNavBar from './components/AppNavBar/AppNavBar.js';
 import ImageLinkForm from './components/ImageLinkForm/imageLinkForm.js';
@@ -118,13 +118,14 @@ import './App.css';
 //   "retina_detect": true
 // }
 
-class App extends Component {
+class App extends React.Component {
 
   constructor() {
     super();
     this.state = {
       imageUrl: '',
-      route: 'faceDetect'
+      route: 'faceDetect',
+      isSignedIn: true
     }
   }
 
@@ -134,6 +135,7 @@ class App extends Component {
   }
 
   onRouteChange = (route) => {
+    this.setState({route: route});
     console.log('route');
   }
 
@@ -147,15 +149,16 @@ class App extends Component {
   // }
 
   render() {
+    const {isSignedIn, imageUrl, route, box} = this.state;
     return (
       <div>
         {/* <Particles className='particles' params={particlesParams}/> */}
         <div className="App">
-          <AppNavBar/>
+          <AppNavBar isSignedIn = {isSignedIn} onRouteChange = {this.onRouteChange}/>
           <Grid>
 
               {
-                 (this.state.route === 'faceDetect') ?
+                 (route === 'faceDetect') ?
                  (
                    <div>
                      <Row className="show-grid">
@@ -170,12 +173,11 @@ class App extends Component {
                     </Row>
                    </div>
                   )
-                      :
-                  (
-                  <Row xs={12} md={8}>
-                    <DemoGraph onRouteChange={this.onRouteChange}/>
-                  </Row>
-                  )
+                      :  (
+                        <Row xs={12} md={8}>
+                          <DemoGraph/>
+                        </Row>
+                      )
               }
 
           </Grid>
