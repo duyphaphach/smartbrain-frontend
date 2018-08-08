@@ -1,13 +1,29 @@
 import React from 'react';
 import ImageDetectForm from '../ImageDetectForm/ImageDetectForm.js';
+import Clarifai from 'clarifai';
+
+const app = new Clarifai.App({
+ apiKey: '6b17ac395a4a482f87c614a73c04971c'
+});
 
 class DemoGraphics extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-
+      imageUrl: '',
     }
+  }
+
+  onInputChange = (event) => {
+    this.setState({imageUrl: event.target.value})
+    app.models.predict("c0c0ac362b03416da06ab3fa36fb58e3", this.state.imageUrl)
+    .then((res) => {
+      console.log(this.state)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
   }
 
   render() {
@@ -17,11 +33,11 @@ class DemoGraphics extends React.Component {
           <div className="card-body">
               <div className="row">
                 <div className="col-md-12">
-                  <ImageDetectForm></ImageDetectForm>
+                  <ImageDetectForm onInputChange={this.onInputChange}></ImageDetectForm>
                 </div>
                   <div className="col-md-7" style={{'padding-top': '41px'}}>
                       <div className="view overlay">
-                        <img width='100%' height="auto" src="https://www.w3schools.com/w3images/fjords.jpg" alt=""/>
+                        <img width='100%' height="auto" src={this.state.imageUrl} alt=""/>
                           <a>
                               <div className="mask rgba-white-slight">
                               </div>
