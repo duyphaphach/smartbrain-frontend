@@ -4,7 +4,7 @@ import Clarifai from 'clarifai';
 import AppNavBar from './components/AppNavBar/AppNavBar.js';
 import ImageLinkForm from './components/ImageLinkForm/imageLinkForm.js';
 import FaceReco from './components/FaceRecognition/FaceRecognition.js';
-import DemoGraph from './components/DemoGraphics/demoGraphics.js';
+import DemoGraphics from './components/DemoGraphics/DemoGraphics.js';
 import SignIn from './components/SignIn/SignIn.js';
 import Register from './components/Register/Register.js';
 import {Grid, Row, Col, Image} from 'react-bootstrap';
@@ -168,12 +168,18 @@ class App extends React.Component {
   render() {
     const {isSignedIn, imageUrl, route, box} = this.state;
     return (
-      <div>
+      <div className="full-height">
         {/* <Particles className='particles' params={particlesParams}/> */}
         <div className="App">
+<<<<<<< HEAD
+          {/* <SignIn /> */}
+          <AppNavBar isSignedIn = {isSignedIn} onRouteChange = {this.onRouteChange}/>
+          {/*<Grid>
+=======
 
          <AppNavBar isSignedIn = {isSignedIn} onRouteChange = {this.onRouteChange}/>
           <Grid>
+>>>>>>> ChangeSeStateDemo
 
               {
                 (route === 'signin')
@@ -212,7 +218,12 @@ class App extends React.Component {
 
               }
 
+<<<<<<< HEAD
+          </Grid> */}
+          <DemoGraphics />
+=======
           </Grid>
+>>>>>>> ChangeSeStateDemo
         </div>
       </div>
     );
