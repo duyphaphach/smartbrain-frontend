@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import AppLogo from '../AppLogo/AppLogo.js';
 // import Login from '../Login/login.js';
 import FaceReco from '../FaceRecognition/FaceRecognition.js';
-import DemoGraph from '../DemoGraphics/demoGraphics.js';
 import {Navbar, Nav, NavItem, Button} from 'react-bootstrap';
 import './AppNavBar.css';
 

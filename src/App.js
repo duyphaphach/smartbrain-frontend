@@ -3,7 +3,7 @@ import Particles from 'react-particles-js';
 import AppNavBar from './components/AppNavBar/AppNavBar.js';
 import ImageLinkForm from './components/ImageLinkForm/imageLinkForm.js';
 import FaceReco from './components/FaceRecognition/FaceRecognition.js';
-import DemoGraph from './components/DemoGraphics/demoGraphics.js';
+import DemoGraphics from './components/DemoGraphics/DemoGraphics.js';
 import SignIn from './components/SignIn/SignIn.js';
 import {Grid, Row, Col} from 'react-bootstrap';
 import './App.css';
@@ -152,12 +152,12 @@ class App extends React.Component {
   render() {
     const {isSignedIn, imageUrl, route, box} = this.state;
     return (
-      <div>
+      <div className="full-height">
         {/* <Particles className='particles' params={particlesParams}/> */}
         <div className="App">
           {/* <SignIn /> */}
-          {/* <AppNavBar isSignedIn = {isSignedIn} onRouteChange = {this.onRouteChange}/>
-          <Grid>
+          <AppNavBar isSignedIn = {isSignedIn} onRouteChange = {this.onRouteChange}/>
+          {/*<Grid>
 
               {
                  (route === 'faceDetect') ?
@@ -183,6 +183,7 @@ class App extends React.Component {
               }
 
           </Grid> */}
+          <DemoGraphics />
         </div>
       </div>
     );
