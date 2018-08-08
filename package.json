@@ -5,6 +5,7 @@
   "dependencies": {
     "babel-eslint": "^8.2.6",
     "clarifai": "^2.8.0",
+    "mdbootstrap": "^4.5.8",
     "react": "^16.4.2",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.2",
