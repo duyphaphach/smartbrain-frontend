@@ -161,22 +161,15 @@ class App extends React.Component {
                  (route === 'faceDetect') ?
                  (
                    <div>
-                     <Row className="show-grid">
-                       <Col xs={12} md={8}>
-                         <ImageLinkForm onInputChange={this.onInputChange}/>
-                       </Col>
-                     </Row>
-                     <Row>
-                    <Col xs={12} md={8}>
-                      <FaceReco imageUrl={this.state.imageUrl}/>
-                    </Col>
-                    </Row>
+                        <FaceReco imageUrl={this.state.imageUrl}/>
                    </div>
                   )
                       :  (
-                        <Row xs={12} md={8}>
-                          <DemoGraph/>
-                        </Row>
+                        route === 'demoGraph' ? (
+                            <DemoGraph/>
+                        ) : (
+                          true
+                        )
                       )
               }
 
