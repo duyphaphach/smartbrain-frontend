@@ -1,11 +1,13 @@
 import React from 'react';
 import Particles from 'react-particles-js';
+import Clarifai from 'clarifai';
 import AppNavBar from './components/AppNavBar/AppNavBar.js';
 import ImageLinkForm from './components/ImageLinkForm/imageLinkForm.js';
 import FaceReco from './components/FaceRecognition/FaceRecognition.js';
 import DemoGraph from './components/DemoGraphics/demoGraphics.js';
 import SignIn from './components/SignIn/SignIn.js';
-import {Grid, Row, Col} from 'react-bootstrap';
+import Register from './components/Register/Register.js';
+import {Grid, Row, Col, Image} from 'react-bootstrap';
 import './App.css';
 
 // const particlesParams = {
@@ -119,25 +121,39 @@ import './App.css';
 //   "retina_detect": true
 // }
 
+const app = new Clarifai.App({
+ apiKey: 'ab8cd76d3d904529b913b56395139296'
+});
+
 class App extends React.Component {
 
   constructor() {
     super();
     this.state = {
       imageUrl: '',
-      route: 'faceDetect',
+      box: {},
+      route: 'home',
       isSignedIn: true
     }
   }
 
-  onInputChange = (event) => {
-    this.setState({imageUrl: event.target.value});
-    console.log(this.state.imageUrl);
+  loadUser = (data) => {
+    this.setState({user: {
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      entries: data.entries,
+      joined: data.joined
+    }})
   }
 
   onRouteChange = (route) => {
+    if (route === 'signout') {
+      this.setState({isSignedIn: false})
+    } else if (route === 'home') {
+      this.setState({isSignedIn: true})
+    }
     this.setState({route: route});
-    console.log('route');
   }
 
   // onRouteChange = (route) => {
@@ -155,27 +171,48 @@ class App extends React.Component {
       <div>
         {/* <Particles className='particles' params={particlesParams}/> */}
         <div className="App">
-          <SignIn />
-          {/* <AppNavBar isSignedIn = {isSignedIn} onRouteChange = {this.onRouteChange}/>
+
+         <AppNavBar isSignedIn = {isSignedIn} onRouteChange = {this.onRouteChange}/>
           <Grid>
 
               {
-                 (route === 'faceDetect') ?
-                 (
-                   <div>
-                        <FaceReco imageUrl={this.state.imageUrl}/>
-                   </div>
+                (route === 'signin')
+                ?
+                  (
+                    (<SignIn />)
                   )
-                      :  (
-                        route === 'demoGraph' ? (
-                            <DemoGraph/>
-                        ) : (
-                          true
-                        )
-                      )
+                :
+                (route === 'faceDetect' || route === 'home')
+                ?
+                (
+                  <div>
+                       <FaceReco box={box} imageUrl={imageUrl} onButtonSubmit={this.onButtonSubmit}/>
+                  </div>
+                )
+                :
+                (
+                 route === 'demoGraph'
+                 ?
+                 (<DemoGraph/>)
+                 :
+                 (
+                   route === 'signout'
+                   ?
+                   (<SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>)
+                     :
+                     route === 'register'
+                     ?
+                     (<Register/>)
+                     :
+                     (
+                       true
+                     )
+                  )
+               )
+
               }
 
-          </Grid> */}
+          </Grid>
         </div>
       </div>
     );

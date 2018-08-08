@@ -18,14 +18,15 @@ class DemoGraph extends React.Component {
   render() {
     return (
       <div>
-        <Row>
-          <ImageLinkForm onInputChange={this.onInputChange}/>
-        </Row>
-        <Row>
-          <Col xs={12} md={8}>
+        <div className="row">
+          <div className="col-md-5">
+            <ImageLinkForm onInputChange={this.onInputChange}/>
             <Image src={this.state.imageUrl} rounded/>
-          </Col>
-        </Row>
+          </div>
+          <div className="col-md-4">
+
+          </div>
+        </div>
       </div>
     );
   }

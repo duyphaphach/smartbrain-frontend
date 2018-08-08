@@ -1,22 +1,18 @@
 import React from 'react';
+import './ImageLinkForm.css'
 import {FormGroup, ControlLabel, FormControl, HelpBlock, Button} from 'react-bootstrap';
 
-const ImageLinkForm = ({onInputChange}) => {
+const ImageLinkForm = ({onInputChange, onButtonSubmit}) => {
     return (
-      <form>
-        <FormGroup
-          controlId="formBasicText"
-        >
-          <ControlLabel>Working example with validation</ControlLabel>
-          <FormControl
-            type="text"
-            placeholder="Image Url"
-            onChange={onInputChange}
-            />
-          <HelpBlock>Validation is based on string length.</HelpBlock>
-          <Button bsStyle="primary">Detect</Button>
-        </FormGroup>
-      </form>
+        <div className='center'>
+        <div className='form center pa4 br3 shadow-5'>
+          <input className='f4 pa2 w-70 center' type='tex' onChange={onInputChange}/>
+          <button
+            className='w-30 grow f4 link ph3 pv2 dib white bg-light-purple'
+            onClick={onButtonSubmit}
+          >Detect</button>
+        </div>
+      </div>
     );
 }
 
