@@ -155,7 +155,7 @@ class App extends React.Component {
       <div>
         {/* <Particles className='particles' params={particlesParams}/> */}
         <div className="App">
-          <SignIn />
+          {/* <SignIn /> */}
           {/* <AppNavBar isSignedIn = {isSignedIn} onRouteChange = {this.onRouteChange}/>
           <Grid>
 
