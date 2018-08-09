@@ -64,20 +64,6 @@ loadUser = (data) => {
         Clarifai.FACE_DETECT_MODEL,
         this.state.input)
       .then(response => {
-        if (response) {
-          fetch('http://localhost:3001/image', {
-            method: 'put',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-              id: this.state.user.id
-            })
-          })
-            .then(response => response.json())
-            .then(count => {
-              this.setState(Object.assign(this.state.user, { entries: count}))
-            })
-
-        }
         this.displayFaceBox(this.calculateFaceLocation(response));
       })
       .catch(err => console.log(err, 'ad'));
@@ -90,7 +76,7 @@ loadUser = (data) => {
       <div>
         <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
         <div className='center ma' style={{margin: '0 auto'}}>
-            <div className = 'absolute mt2'>
+            <div style={{position: 'absolute'}}>
               <img atl="" id="inputimage" src={imageUrl} width='500px' height='auto'/>
               <div className='bounding-box' style={{top: box.topRow, right: box.rightCol, bottom: box.bottomRow, left: box.leftCol}}></div>
             </div>
