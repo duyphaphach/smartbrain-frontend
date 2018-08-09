@@ -193,7 +193,7 @@ class App extends React.Component {
                 (
                  route === 'demoGraph'
                  ?
-                 (<DemoGraph/>)
+                 (<DemoGraphics/>)
                  :
                  (
                    route === 'signout'
