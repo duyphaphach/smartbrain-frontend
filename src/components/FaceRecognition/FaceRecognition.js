@@ -5,7 +5,7 @@ import Clarifai from 'clarifai';
 import {Image, Row, Col} from 'react-bootstrap';
 
 const app = new Clarifai.App({
- apiKey: '6b17ac395a4a482f87c614a73c04971c'
+ apiKey: '2ca0cad8e48c4f23a69afa2ac1bcbfce'
 });
 
 class FaceReco extends React.Component {
@@ -15,8 +15,25 @@ class FaceReco extends React.Component {
       imageUrl: '',
       input: '',
       box: {},
+      user: {
+        id: '',
+        name: '',
+        email: '',
+        entries: 0,
+        joined: ''
+      }
     }
   }
+
+loadUser = (data) => {
+  this.setState({user: {
+    id: data.id,
+    name: data.name,
+    email: data.email,
+    entries: data.entries,
+    joined: data.joined
+  }})
+}
 
   calculateFaceLocation = (data) => {
     const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
@@ -47,7 +64,6 @@ class FaceReco extends React.Component {
         Clarifai.FACE_DETECT_MODEL,
         this.state.input)
       .then(response => {
-        console.log(response);
         this.displayFaceBox(this.calculateFaceLocation(response));
       })
       .catch(err => console.log(err, 'ad'));
@@ -57,13 +73,27 @@ class FaceReco extends React.Component {
   render() {
     const {imageUrl, box} = this.state;
     return (
-      <div>
-        <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
-        <div className='center ma tc'>
-            <div className = 'absolute mt2'>
-              <img atl="" id="inputimage" src={imageUrl} width='500px' height='auto' style={{margin: 'center'}}/>
-              <div className='bounding-box' style={{top: box.topRow, right: box.rightCol, bottom: box.bottomRow, left: box.leftCol}}></div>
-            </div>
+      <div className="row justify-content-center">
+        <div className="card col-10 text-center" style={{ 'margin-top': '15px', 'overflow-y': '800px' }} >
+          <div className="card-body">
+              <div className="row">
+                <div className="col-md-12">
+                    <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
+                    <div>
+                        <div style={{position: 'absolute'}}>
+                          <img
+                            atl="" id="inputimage" src={imageUrl}
+                            width='500px' height='auto'
+                            style={{marginTop: '50px'}}/>
+                          <div
+                            className='bounding-box'
+                            style={{top: box.topRow, right: box.rightCol, bottom: box.bottomRow, left: box.leftCol}}>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
         </div>
       </div>
     );
