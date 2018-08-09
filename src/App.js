@@ -186,7 +186,7 @@ class App extends React.Component {
                 (route === 'signin')
                 ?
                   (
-                    (<SignIn />)
+                    (<SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange} />)
                   )
                 :
                 (route === 'faceDetect' || route === 'home')
@@ -205,11 +205,11 @@ class App extends React.Component {
                  (
                    route === 'signout'
                    ?
-                   (<SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>)
+                   (<SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange} />)
                      :
                      route === 'register'
                      ?
-                     (<Register/>)
+                     (<Register loadUser={this.loadUser} onRouteChange={this.onRouteChange} />)
                      :
                      (
                        true

@@ -59,12 +59,11 @@ class FaceReco extends React.Component {
     return (
       <div>
         <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
-        <div className='center ma'>
+        <div className='center ma tc'>
             <div className = 'absolute mt2'>
-              <img atl="" id="inputimage" src={imageUrl} width='500px' height='auto'/>
+              <img atl="" id="inputimage" src={imageUrl} width='500px' height='auto' style={{margin: 'center'}}/>
               <div className='bounding-box' style={{top: box.topRow, right: box.rightCol, bottom: box.bottomRow, left: box.leftCol}}></div>
             </div>
-
         </div>
       </div>
     );

@@ -1,8 +1,9 @@
 import React from 'react';
 
-class Signin extends React.Component {
+class SignIn extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       signInEmail: '',
       signInPassword: ''
@@ -31,7 +32,8 @@ class Signin extends React.Component {
         console.log(res);
         if (res.data) {
           console.log('success');
-          this.props.loadUser(res.data.email);
+          console.log(this);
+          this.props.loadUser(res.data);
           this.props.onRouteChange('home');
         }
       })
@@ -83,4 +85,4 @@ class Signin extends React.Component {
   }
 }
 
-export default Signin;
+export default SignIn;
