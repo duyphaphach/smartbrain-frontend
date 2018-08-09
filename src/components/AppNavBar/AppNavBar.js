@@ -15,21 +15,55 @@ class AppNavBar extends Component {
     if (this.props.isSignedIn) {
         return (
           <div>
-            <nav style={{display: 'flex', justifyContent: 'flex-end'}}>
-              <div>
-                <Button onClick={() => this.props.onRouteChange('faceDetect')}>FaceRecognition</Button>
-                <Button onClick={() => this.props.onRouteChange('demoGraph')}>DemoGraphics</Button>
-                <Button onClick={() => this.props.onRouteChange('signout')}>Sign Out</Button>
-              </div>
-            </nav>
+            <header style={{marginBottom: '100px'}}>
+                <nav className="navbar fixed-top navbar-expand-lg navbar-dark pink scrolling-navbar">
+                    <a className="navbar-brand" href="#"><strong>Smart Brain</strong></a>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav mr-auto">
+                            <li className="nav-item">
+                                <a className="nav-link" href="#" onClick={() => this.props.onRouteChange('faceDetect')}>FaceRecognition</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#" onClick={() => this.props.onRouteChange('demoGraph')}>DemoGraphics</a>
+                            </li>
+                        </ul>
+                        <ul className="navbar-nav nav-flex-icons">
+                            <li className="nav-item">
+                                <a className="nav-link" onClick={() => this.props.onRouteChange('signout')}><i className="fa fa-power-off"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+            </header>
           </div>
         );
       } else {
         return (
-          <nav style={{display: 'flex', justifyContent: 'flex-end'}}>
-            <Button onClick={() => this.props.onRouteChange('signin')}>Sign In</Button>
-            <Button onClick={() =>this.props.onRouteChange('register')}>Register</Button>
-          </nav>
+          <div>
+            <header style={{marginBottom: '100px'}}>
+                <nav className="navbar fixed-top navbar-expand-lg navbar-dark pink scrolling-navbar">
+                    <a className="navbar-brand" href="#"><strong>Smart Brain</strong></a>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav mr-auto">
+                            <li className="nav-item">
+                                <a className="nav-link" href="#" onClick={() => this.props.onRouteChange('signin')}>Sign In</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#" onClick={() =>this.props.onRouteChange('register')}>Register</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+            </header>
+          </div>
         );
       }
   }

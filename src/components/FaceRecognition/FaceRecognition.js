@@ -73,13 +73,27 @@ loadUser = (data) => {
   render() {
     const {imageUrl, box} = this.state;
     return (
-      <div>
-        <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
-        <div className='center ma' style={{margin: '0 auto'}}>
-            <div style={{position: 'absolute'}}>
-              <img atl="" id="inputimage" src={imageUrl} width='500px' height='auto'/>
-              <div className='bounding-box' style={{top: box.topRow, right: box.rightCol, bottom: box.bottomRow, left: box.leftCol}}></div>
-            </div>
+      <div className="row justify-content-center">
+        <div className="card col-10 text-center" style={{ 'margin-top': '15px', 'overflow-y': '800px' }} >
+          <div className="card-body">
+              <div className="row">
+                <div className="col-md-12">
+                    <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
+                    <div>
+                        <div style={{position: 'absolute'}}>
+                          <img
+                            atl="" id="inputimage" src={imageUrl}
+                            width='500px' height='auto'
+                            style={{marginTop: '50px'}}/>
+                          <div
+                            className='bounding-box'
+                            style={{top: box.topRow, right: box.rightCol, bottom: box.bottomRow, left: box.leftCol}}>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
         </div>
       </div>
     );
