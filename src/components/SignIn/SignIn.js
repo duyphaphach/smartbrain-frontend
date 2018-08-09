@@ -27,10 +27,11 @@ class Signin extends React.Component {
       })
     })
       .then(response => response.json())
-      .then(user => {
-        if (user.id) {
+      .then(res => {
+        console.log(res);
+        if (res.data) {
           console.log('success');
-          this.props.loadUser(user);
+          this.props.loadUser(res.data.email);
           this.props.onRouteChange('home');
         }
       })
@@ -53,6 +54,7 @@ class Signin extends React.Component {
                   name="email-address"
                   id="email-address"
                   onChange={this.onEmailChange}
+                  style={{color: 'black'}}
                 />
               </div>
               <div className="mv3">
@@ -63,6 +65,7 @@ class Signin extends React.Component {
                   name="password"
                   id="password"
                   onChange={this.onPasswordChange}
+                  style={{color: 'black'}}
                 />
               </div>
             </fieldset>
@@ -72,9 +75,6 @@ class Signin extends React.Component {
                 className="btn btn-primary"
                 type="submit"
               >Sign In</button>
-            </div>
-            <div className="lh-copy mt3">
-              <button  onClick={() => onRouteChange('register')} className="btn btn-unique">Register</button>
             </div>
           </div>
         </main>

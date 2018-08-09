@@ -28,7 +28,7 @@ class AppNavBar extends Component {
         return (
           <nav style={{display: 'flex', justifyContent: 'flex-end'}}>
             <Button onClick={() => this.props.onRouteChange('signin')}>Sign In</Button>
-            <Button onClick={() =>this.props. onRouteChange('register')}>Register</Button>
+            <Button onClick={() =>this.props.onRouteChange('register')}>Register</Button>
           </nav>
         );
       }

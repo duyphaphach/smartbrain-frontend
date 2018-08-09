@@ -1,46 +1,102 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class Register extends Component {
-  render(){
+class Register extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+      name: ''
+    }
+  }
+
+  onNameChange = (event) => {
+    this.setState({name: event.target.value})
+  }
+
+  onEmailChange = (event) => {
+    this.setState({email: event.target.value})
+  }
+
+  onPasswordChange = (event) => {
+    this.setState({password: event.target.value})
+  }
+
+  onSubmitSignIn = () => {
+    fetch('http://localhost:3001/register', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password,
+        name: this.state.name
+      })
+    })
+      .then(response => response.json())
+      .then(res => {
+        console.log(res);
+        if (res) {
+          this.props.loadUser(this.state.name);
+          this.props.onRouteChange('home');
+        }
+      })
+      .catch(err => console.log(err));
+  }
+
+  render() {
     return (
-      <div>
-        <div class="card">
-          <div class="card-body">
-            <form>
-              <p class="h4 text-center py-4">Sign up</p>
-              <div class="md-form">
-                <i class="fa fa-user prefix grey-text"></i>
-                <input type="text" id="materialFormCardNameEx" class="form-control" />
-                <label for="materialFormCardNameEx" class="font-weight-light">Your name</label>
+      <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
+        <main className="pa4 black-80">
+          <div className="measure">
+            <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
+              <legend className="f1 fw6 ph0 mh0">Register</legend>
+              <div className="mt3">
+                <label className="db fw6 lh-copy f6" htmlFor="name">Name</label>
+                <input
+                  className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                  type="text"
+                  name="name"
+                  id="name"
+                  style={{color: 'black'}}
+                  onChange={this.onNameChange}
+                />
               </div>
-
-              <div class="md-form">
-                <i class="fa fa-envelope prefix grey-text"></i>
-                <input type="email" id="materialFormCardEmailEx" class="form-control" />
-                <label for="materialFormCardEmailEx" class="font-weight-light">Your email</label>
+              <div className="mt3">
+                <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
+                <input
+                  className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                  type="email"
+                  name="email-address"
+                  id="email-address"
+                  style={{color: 'black'}}
+                  onChange={this.onEmailChange}
+                />
               </div>
-
-              <div class="md-form">
-                <i class="fa fa-exclamation-triangle prefix grey-text"></i>
-                <input type="email" id="materialFormCardConfirmEx" class="form-control" />
-                <label for="materialFormCardConfirmEx" class="font-weight-light">Confirm your email</label>
+              <div className="mv3">
+                <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
+                <input
+                  className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                  type="password"
+                  name="password"
+                  id="password"
+                  style={{color: 'black'}}
+                  onChange={this.onPasswordChange}
+                />
               </div>
-
-              <div class="md-form">
-                <i class="fa fa-lock prefix grey-text"></i>
-                <input type="password" id="materialFormCardPasswordEx" class="form-control" />
-                  <label for="materialFormCardPasswordEx" class="font-weight-light">Your password</label>
-              </div>
-
-              <div class="text-center py-4 mt-3">
-                <button class="btn btn-cyan" type="submit">Register</button>
-              </div>
-            </form>
+            </fieldset>
+            <div className="">
+              <input
+                onClick={this.onSubmitSignIn}
+                className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
+                type="submit"
+                value="Register"
+              />
+            </div>
           </div>
-        </div>
-      </div>
-    )
-  };
+        </main>
+      </article>
+    );
+  }
 }
 
 export default Register;

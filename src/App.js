@@ -132,8 +132,15 @@ class App extends React.Component {
     this.state = {
       imageUrl: '',
       box: {},
-      route: 'home',
-      isSignedIn: true
+      route: 'signin',
+      isSignedIn: false,
+      user: {
+        id: '',
+        name: '',
+        email: '',
+        entries: '',
+        joined: ''
+      }
     }
   }
 
@@ -173,7 +180,7 @@ class App extends React.Component {
         <div className="App">
 
          <AppNavBar isSignedIn = {isSignedIn} onRouteChange = {this.onRouteChange}/>
-          <Grid>
+          {/* <Grid> */}
 
               {
                 (route === 'signin')
@@ -212,7 +219,7 @@ class App extends React.Component {
 
               }
 
-          </Grid>
+          {/* </Grid> */}
         </div>
       </div>
     );
